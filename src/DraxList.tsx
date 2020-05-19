@@ -61,6 +61,7 @@ export const DraxList = <T extends unknown>(
 		onItemReorder,
 		id: idProp,
 		reorderable: reorderableProp,
+		onItemDrop,
 		...props
 	}: PropsWithChildren<DraxListProps<T>>,
 ): ReactElement | null => {
@@ -181,7 +182,8 @@ export const DraxList = <T extends unknown>(
 
 	// Clear the currently dragged list item.
 	const resetDraggedItem = useCallback(
-		() => {
+		(props) => {
+			onItemDrop(data[draggedItemRef.current], props.dragAbsolutePosition)
 			draggedItemRef.current = undefined;
 		},
 		[],
