@@ -801,4 +801,7 @@ export interface DraxListProps<TItem> extends Omit<FlatListProps<TItem>, 'render
 
 	/** Can the list be reordered by dragging items? Defaults to true if onItemReorder is set. */
 	reorderable?: boolean;
+	
+	/** Item drop callback */
+	onItemDrop?: (item: TItem, { x, y }: {x: number, y: number }) => void
 }
