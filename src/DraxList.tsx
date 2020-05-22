@@ -186,7 +186,7 @@ export const DraxList = <T extends unknown>(
 			onItemDrop(data[draggedItemRef.current], props.dragAbsolutePosition)
 			draggedItemRef.current = undefined;
 		},
-		[],
+		[onItemDrop, data],
 	);
 
 	// Drax view renderItem wrapper.
