@@ -16,6 +16,7 @@ import {
 	Animated,
 	findNodeHandle,
 	StyleSheet,
+	ScrollView,
 } from 'react-native';
 
 import { DraxView } from './DraxView';
@@ -570,14 +571,14 @@ export const DraxList = <T extends unknown>(
 			onMonitorDragDrop={onMonitorDragDrop}
 		>
 			<DraxSubprovider parent={{ id, nodeHandleRef }}>
-				<FlatList
-					{...props}
-					ref={setFlatListRefs}
-					renderItem={renderItem}
-					onScroll={onScroll}
-					onContentSizeChange={onContentSizeChange}
-					data={reorderedData}
-				/>
+				<ScrollView
+                    {...props}
+                    ref={setFlatListRefs}
+                    onScroll={onScroll}
+                    onContentSizeChange={onContentSizeChange}
+                >
+                    {reorderedData?.map((item, index) => renderItem({ item, index }))}
+                </ScrollView>
 			</DraxSubprovider>
 		</DraxView>
 	) : null;
